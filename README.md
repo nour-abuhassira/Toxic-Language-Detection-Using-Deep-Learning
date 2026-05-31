@@ -145,8 +145,8 @@ To replicate the analysis and model training, follow these steps:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/nour-abuhassira/Toxic-Language-Detection.git
-cd Toxic-Language-Detection
+git clone [https://github.com/nour-abuhassira/Toxic-Language-Detection-Using-Deep-Learning.git](https://github.com/nour-abuhassira/Toxic-Language-Detection-Using-Deep-Learning.git)
+cd Toxic-Language-Detection-Using-Deep-Learning
 ```
 
 ### 2. Install Required Libraries
