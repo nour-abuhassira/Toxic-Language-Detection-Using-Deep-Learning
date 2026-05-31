@@ -1,46 +1,175 @@
 # Toxic Language Detection Using Deep Learning
 
+This project focuses on detecting and classifying toxic online comments using both traditional machine learning and state-of-the-art deep learning models. By analyzing textual content from online discussions, the project develops robust classification systems capable of identifying harmful language while providing explainable and trustworthy predictions.
+
 ## Project Overview
-This project focuses on identifying and classifying types of toxicity in text data using machine learning techniques. In addition to building a baseline classification pipeline, this repository includes an analytical comparison of first-order versus second-order optimization methods to understand learning convergence behavior.
 
----
+Online platforms face significant challenges in moderating toxic content, including insults, threats, hate speech, and abusive language. This project leverages a toxic comments dataset to build and evaluate multiple machine learning and deep learning approaches for automated toxicity detection.
 
-## Key Data Insights & Challenges
+The project compares traditional Natural Language Processing (NLP) techniques with modern transformer-based architectures to determine the most effective solution for toxic language classification.
 
-### 1. Class Imbalance
-During the Exploratory Data Analysis (EDA) phase, target label distributions were thoroughly evaluated. The analysis revealed a severe class imbalance, with **"toxic"** identified as the most frequent class among all labeled categories. Standard accuracy metrics can be misleading under these conditions; therefore, model performance should be evaluated using robust metrics like F1-score or precision-recall curves.
+The evaluated models include:
 
-### 2. Feature Overlap Limitations
-The baseline text classification model utilizes a **Linear SVC** classifier paired with **n-gram features**. While computationally efficient, evaluation highlighted a distinct performance bottleneck caused by **feature overlap discrepancies**. Because different text categories share a heavily overlapping vocabulary, the linear boundary struggles to isolate intent and nuance. This underscores the necessity of moving toward semantic, context-aware embeddings (such as transformers) for complex classification tasks.
+* TF-IDF + Logistic Regression (Baseline)
+* LSTM (Long Short-Term Memory)
+* Bidirectional LSTM
+* DistilBERT Transformer Model
 
----
+In addition to model performance, the project emphasizes:
 
-## Optimization Analysis: First-Order vs. Second-Order
+* Model explainability using LIME
+* Error and failure analysis
+* Robustness evaluation
+* Hyperparameter optimization
+* Comparative performance assessment
 
-A component of this study involves comparing how different mathematical optimization frameworks update model parameters during training[cite: 1]:
+## Project Structure
 
-* **First-Order Optimization (Backpropagation):** Relies strictly on the gradient vector (first derivatives) to update weights[cite: 1]. It features low computational overhead per iteration and scales seamlessly to massive architectures, though it requires careful learning rate tuning[cite: 1].
-* **Second-Order Optimization (Newton's Method):** Incorporates the Hessian matrix (second derivatives) to account for the curvature of the loss surface[cite: 1]. While it offers quadratic convergence and more precise step trajectories, the $O(N^3)$ computational complexity of calculating and inverting the Hessian makes it restrictive for high-dimensional feature spaces[cite: 1].
+### Data Preprocessing & Exploratory Analysis
 
----
+The initial phase focuses on understanding and preparing the textual data:
 
-## Model Pipeline & Architecture
+#### Exploratory Data Analysis (EDA)
 
-1. **Exploratory Data Analysis:** Feature distribution mapping and class frequency balancing.
-2. **Text Preprocessing:** Tokenization, n-gram extraction, and TF-IDF vectorization.
-3. **Classification Baseline:** Linear Support Vector Classification (SVC).
-4. **Optimization Evaluation:** Convergence tracking and metric comparisons (including learning behavior and error metrics)[cite: 1].
+* Analyzing class distributions and toxicity prevalence.
+* Investigating comment length patterns and linguistic characteristics.
+* Identifying class imbalance issues.
 
----
+#### Text Preprocessing
 
-## Getting Started
+* Text cleaning and normalization.
+* Tokenization and sequence preparation.
+* TF-IDF vectorization for traditional machine learning models.
+* Text encoding for deep learning architectures.
 
-### Prerequisites
-* Python 3.x
-* scikit-learn
-* pandas / numpy
+#### Data Preparation
 
-### Running the Pipeline
-To execute the baseline model training and view the classification report:
+* Train-validation-test splitting.
+* Handling class imbalance.
+* Feature engineering and preprocessing pipelines.
+
+### Machine Learning & Deep Learning Modeling
+
+The core of the project involves building and comparing multiple classification approaches:
+
+#### Baseline Model
+
+* TF-IDF + Logistic Regression
+
+#### Deep Learning Models
+
+* LSTM Network
+* Bidirectional LSTM Network
+
+#### Transformer-Based Model
+
+* DistilBERT Fine-Tuning for Toxic Language Classification
+
+#### Hyperparameter Optimization
+
+* Model tuning and performance optimization.
+* Evaluation across multiple metrics.
+
+### Model Evaluation
+
+Performance is assessed using several classification metrics:
+
+* Accuracy
+* Precision
+* Recall
+* F1-Score
+* ROC-AUC
+
+The project includes a detailed comparison between traditional machine learning methods and deep learning architectures to identify the most effective model.
+
+### Explainability & Interpretability
+
+To improve transparency and trustworthiness:
+
+#### LIME Explanations
+
+* Local Interpretable Model-Agnostic Explanations (LIME) are used to understand individual predictions.
+* Identification of words and phrases that contribute most strongly to toxicity classifications.
+
+#### Feature Importance Analysis
+
+* Understanding which textual patterns influence model decisions.
+
+### Robustness & Failure Analysis
+
+The project evaluates model reliability through:
+
+#### Failure Analysis
+
+* Examination of incorrectly classified comments.
+* Identification of common error patterns.
+
+#### Robustness Testing
+
+* Evaluation of model behavior under challenging inputs.
+* Assessment of generalization capabilities.
+
+## Dataset Variables
+
+The dataset consists of online user comments and associated toxicity labels.
+
+### Input Features
+
+* Raw textual comments.
+* Linguistic and semantic information extracted through NLP techniques.
+
+### Target Variable
+
+**Toxicity Label**
+
+* 0 = Non-Toxic Comment
+* 1 = Toxic Comment
+
+## Technologies Used
+
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Seaborn
+* Scikit-Learn
+* TensorFlow / Keras
+* Hugging Face Transformers
+* DistilBERT
+* LIME
+
+## How to Run
+
+To replicate the analysis and model training, follow these steps:
+
+### 1. Clone the Repository
+
 ```bash
-python src/train.py
+git clone https://github.com/nour-abuhassira/Toxic-Language-Detection.git
+cd Toxic-Language-Detection
+```
+
+### 2. Install Required Libraries
+
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn tensorflow transformers lime
+```
+
+### 3. Execute the Notebook
+
+Open and run:
+
+```bash
+Toxic_Comments.ipynb
+```
+
+to view the exploratory analysis, model development process, evaluation results, explainability analysis, and robustness assessment.
+
+## Key Outcomes
+
+* Built and compared traditional machine learning and deep learning approaches for toxicity detection.
+* Fine-tuned DistilBERT for advanced text classification.
+* Applied Explainable AI (XAI) techniques using LIME.
+* Conducted failure analysis and robustness testing.
+* Evaluated model performance across multiple architectures and metrics.
+* Identified the most effective architecture for toxic language classification while maintaining model interpretability.
